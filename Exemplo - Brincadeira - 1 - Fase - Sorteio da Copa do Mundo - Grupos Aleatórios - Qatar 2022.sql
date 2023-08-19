@@ -13,6 +13,7 @@ Go
 -- Criando a Tabela HistoricoDeJogos --
 Create Table HistoricoJogos
  (CodigoHistoricoJogo Int Identity(1,1) Primary Key Clustered,
+  CodigoSimulador Char(1) Not Null,
   CodigoJogo TinyInt Not Null,
   CodigoGrupoSorteio TinyInt Not Null,
   CodigoSelecao1 TinyInt Not Null,
@@ -29,6 +30,7 @@ Go
 -- Criando a Tabela HistoricoClassificacaoFinal --
 Create Table HistoricoClassificacaoGeral
  (CodigoHistoricoClassificacaoGeral Int Identity(1,1) Primary Key Clustered,
+  CodigoSimulador Char(1) Not Null,  
   CodigoClassificacaoGeral TinyInt Not Null,
   PosicaoClassificacaoGeral TinyInt Default 0,
   CodigoSelecao TinyInt Not Null,
@@ -47,6 +49,7 @@ Go
 -- Criando a Tabela HistoricoSimulacao --
 Create Table HistoricoSimulacao
  (CodigoHistoricoSimulacao Int Identity(1,1) Primary Key Clustered,
+  CodigoSimulador Char(1) Not Null,
   DataHistoricoSimulacao DateTime Default GetDate(),
   Jogo Varchar(100) Not Null,
   Placar Varchar(50) Not Null,
