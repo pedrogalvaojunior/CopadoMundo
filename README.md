@@ -9,6 +9,7 @@ Se você criou os grupos de forma aleatória, para realizar a simulação com su
 Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de finais disputadas e totais de classificações obtidas ao longo das simulações, os quais devem ser executados somente após a execução do arquivo 9 ou 10.
 
 **-- Versão 1.0 -- Desenvolvimento entre 01/04 e 15/04 --**
+
 1 - Simulação do 48 jogos da fase de grupos;
 
 2 - Definição das 16 seleções classificadas para a fase de Oitavas de Final;
@@ -42,6 +43,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 16 - Histórico das Seleções Campeã e Vice-Campea com base nas simulações realizadas.
 
 **-- Versão 2.0 - Entre 18/04 e 05/05 --**
+
 1 - Análise de Desempenho de Finais Disputadas, com base nas simulações realizadas;
 
 2 - Estatística de Desempenho em relação as 16 primeiras posições, com base nas simulações realizadas;
@@ -53,6 +55,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 5 - Redução de tempo de processamento de 0.55 segundos para a média entre  0.07 e 0.10 segundos.
 
 **-- Versão 3.0 - Desenvolvimento entre 10/05 e 15/06 --**
+
 1 - Atualização das seleções participantes.
 
 2 - Correção de erros relacionados aos placares referente a simulação de penaltys.
@@ -60,6 +63,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 3 - Acréscimo dos arquivos 11 e 12.
 
 **-- Versão 4.0 - Desenvolvimento entre 06/09 e 07/09 --**
+
 1 - Correção de erros referentes a contagens estatística de desempenho relacionado as 16 primeiras posições com base no histórico de simulações realizadas.
 
 2 - Acréscimo do arquivo 8.3.
