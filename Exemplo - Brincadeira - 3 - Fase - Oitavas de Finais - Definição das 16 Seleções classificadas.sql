@@ -10,6 +10,31 @@ Create Table ClassificadosOitavasDeFinal
   ClassificacaoFinalNoGrupo TinyInt Not Null)
  Go
 
+-- Simulando as Seleções Classificadas em cada Grupo --
+Exec P_ClassificacaoGrupoA
+Go
+
+Exec P_ClassificacaoGrupoB
+Go
+
+Exec P_ClassificacaoGrupoC
+Go
+
+Exec P_ClassificacaoGrupoD
+Go
+
+Exec P_ClassificacaoGrupoE
+Go
+
+Exec P_ClassificacaoGrupoF
+Go
+
+Exec P_ClassificacaoGrupoG
+Go
+
+Exec P_ClassificacaoGrupoH
+Go
+
 -- Inserindo as Seleções Classificados de cada Grupo na Tabela ClassificadosOitavasDeFinal --
 Insert Into ClassificadosOitavasDeFinal (CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalNoGrupo)
 Select CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalGrupo From GrupoA
