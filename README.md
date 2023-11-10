@@ -67,3 +67,8 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 1 - Correção de erros referentes a contagens estatística de desempenho relacionado as 16 primeiras posições com base no histórico de simulações realizadas.
 
 2 - Acréscimo do arquivo 8.3.
+
+**-- Versão 4.1 - Atualização entre 09/11/23 e 10/11/23 --**
+Correção aplicada ao arquivo - 3 - Fase - Oitavas de Finais - Definição das 16 Seleções Classificadas.
+
+Caso o usuário fosse realizar a execução passo a passo, as 16 Seleções definidas para a fase de oitavas de finais não seriam apresentadas.
