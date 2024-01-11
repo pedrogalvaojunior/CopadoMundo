@@ -72,3 +72,6 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 Correção aplicada ao arquivo - 3 - Fase - Oitavas de Finais - Definição das 16 Seleções Classificadas.
 
 Caso o usuário fosse realizar a execução passo a passo, as 16 Seleções definidas para a fase de oitavas de finais não seriam apresentadas.
+
+**-- Versão 4.2 - Atualização entre 09/01/24 e 11/01/24 --**
+Correção aplicada nos arquivos 1.0 e 2.0 - Relacionados ao seu das seleções de acordo com as definições da Fifa.
