@@ -16,7 +16,7 @@ Truncate Table Selecoes
 Truncate Table Sorteios
 Truncate Table Jogos
 Truncate Table GrupoA
-Truncate Table GrupoA
+Truncate Table GrupoB
 Truncate Table GrupoC
 Truncate Table GrupoD
 Truncate Table GrupoE
@@ -101,7 +101,7 @@ Select CodigoGrupo, PosicaoGrupo, CodigoSelecao From Sorteios
 Where CodigoGrupo = 1
 Go
 
-Insert Into GrupoA (CodigoGrupoSorteio, PosicaoGrupoSorteio, CodigoSelecaoSorteio)
+Insert Into GrupoB(CodigoGrupoSorteio, PosicaoGrupoSorteio, CodigoSelecaoSorteio)
 Select CodigoGrupo, PosicaoGrupo, CodigoSelecao From Sorteios
 Where CodigoGrupo = 2
 Go
@@ -185,7 +185,7 @@ Select Row_Number() Over(Order By A.Posicao) As 'Pote',
            C.NomeSelecao As 'Grupo C', D.NomeSelecao As 'Grupo D',
            E.NomeSelecao As 'Grupo E', F.NomeSelecao As 'Grupo F',
 		   G.NomeSelecao As 'Grupo G', H.NomeSelecao As 'Grupo H'
-From CTEGrupoA A Inner Join CTEGrupoA B
+From CTEGrupoA A Inner Join CTEGrupoB B
                                 On A.Posicao = B.Posicao
 							   Inner Join CTEGrupoC C
                                 On A.Posicao = C.Posicao
@@ -279,7 +279,7 @@ Go
 Exec P_ClassificacaoGrupoA
 Go
 
-Exec P_ClassificacaoGrupoA
+Exec P_ClassificacaoGrupoB
 Go
 
 Exec P_ClassificacaoGrupoC
@@ -311,7 +311,7 @@ Insert Into ClassificadosOitavasDeFinal (CodigoGrupoSorteio, CodigoSelecaoSortei
 Select CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalGrupo From GrupoA
 Where ClassificacaoFinalGrupo In (1,2)
 Union 
-Select CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalGrupo From GrupoA
+Select CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalGrupo From GrupoB
 Where ClassificacaoFinalGrupo In (1,2)
 Union 
 Select CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalGrupo From GrupoC
