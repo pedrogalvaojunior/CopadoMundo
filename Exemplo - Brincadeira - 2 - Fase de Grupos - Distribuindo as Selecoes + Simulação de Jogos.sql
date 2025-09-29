@@ -194,7 +194,8 @@ Create Table Jogos
   CartoesAmareloSelecao1 TinyInt Not Null,
   CartoesAmareloSelecao2 TinyInt Not Null,
   CartoesVermelhoSelecao1 TinyInt Not Null,
-  CartoesVermelhoSelecao2 TinyInt Not Null)
+  CartoesVermelhoSelecao2 TinyInt Not Null,
+  ProrrogacaoOuPenaltys Char(2) Null)
 Go
 
 -- Verificando a existência de Jogos anteriores --
