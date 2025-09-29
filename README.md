@@ -2,7 +2,7 @@
 
 Para realizar a execução de forma correta, basta seguir a ordem de numeração apresentada no nome dos arquivos.
 
-Você poderá realizar o sorteio de forma aleatória, no qual tanto os grupos como as seleções serão distribuídas de acordo com a ordem definida pelo SQL Server através do arquivo 1, ou escolher o sorteio dirigido o qual foi realizado pela Fifa no dia 01/04 executando o arquivo 1.1
+Você poderá realizar o sorteio de forma aleatória, no qual tanto os grupos como as seleções serão distribuídas de acordo com a ordem definida pelo SQL Server através do arquivo 1, ou escolher o sorteio dirigido o qual foi realizado pela Fifa no dia 01/04 executando o arquivo 1.1.
 
 Se você criou os grupos de forma aleatória, para realizar a simulação com sucesso execute o arquivo 9, caso contrário execute o arquivo 10.
 
