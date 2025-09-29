@@ -8,7 +8,7 @@ Se você criou os grupos de forma aleatória, para realizar a simulação com su
 
 Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de finais disputadas e totais de classificações obtidas ao longo das simulações, os quais devem ser executados somente após a execução do arquivo 9 ou 10.
 
-**-- Versão 1.0 -- Desenvolvimento entre 01/04 e 15/04 --**
+**Versão 1.0 -- Desenvolvimento entre 01/04 e 15/04**
 
 1 - Simulação do 48 jogos da fase de grupos;
 
@@ -42,7 +42,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 
 16 - Histórico das Seleções Campeã e Vice-Campea com base nas simulações realizadas.
 
-**-- Versão 2.0 - Entre 18/04 e 05/05 --**
+**Versão 2.0 - Entre 18/04 e 05/05**
 
 1 - Análise de Desempenho de Finais Disputadas, com base nas simulações realizadas;
 
@@ -54,7 +54,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 
 5 - Redução de tempo de processamento de 0.55 segundos para a média entre  0.07 e 0.10 segundos.
 
-**-- Versão 3.0 - Desenvolvimento entre 10/05 e 15/06 --**
+**Versão 3.0 - Desenvolvimento entre 10/05 e 15/06**
 
 1 - Atualização das seleções participantes.
 
@@ -62,21 +62,21 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 
 3 - Acréscimo dos arquivos 11 e 12.
 
-**-- Versão 4.0 - Desenvolvimento entre 06/09 e 07/09 --**
+**Versão 4.0 - Desenvolvimento entre 06/09 e 07/09**
 
 1 - Correção de erros referentes a contagens estatística de desempenho relacionado as 16 primeiras posições com base no histórico de simulações realizadas.
 
 2 - Acréscimo do arquivo 8.3.
 
-**-- Versão 4.1 - Atualização entre 09/11/23 e 10/11/23 --**
+**Versão 4.1 - Atualização entre 09/11/23 e 10/11/23**
 1 - Correção aplicada ao arquivo - 3 - Fase - Oitavas de Finais - Definição das 16 Seleções Classificadas.
 
 Caso o usuário fosse realizar a execução passo a passo, as 16 Seleções definidas para a fase de oitavas de finais não seriam apresentadas.
 
-**-- Versão 4.2 - Atualização entre 09/01/24 e 11/01/24 --**
+**Versão 4.2 - Atualização entre 09/01/24 e 11/01/24**
 1 - Correção aplicada nos arquivos 1.0 e 2.0 - Relacionados ao seu das seleções de acordo com as definições da Fifa.
 
-**-- Versão 4.3 - Atualização entre 27/09/25 e 29/09/25 --**
+**Versão 4.3 - Atualização entre 27/09/25 e 29/09/25**
 1 - Acréscimo da coluna ProrrogacaoOuPenaltys para controle dos empates ocorridos a partir da Oitavas de final.
 
 2 - Validação condicional da ocorrência de prorrogação ou penaltys, aplicando um fator de controle para simular a prorrogação ou penalty, armazenado na tabela de jogos o status, e permitindo exibir qual seleção venceu na prorrogação ou penalty.
