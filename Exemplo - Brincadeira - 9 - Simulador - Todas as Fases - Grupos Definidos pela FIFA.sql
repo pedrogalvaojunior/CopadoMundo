@@ -409,6 +409,7 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2)
 
+ -- Declarando a Variável do Tipo Tabela @JogosComEmpates para armazenar o código dos jogos empatados --
  Declare @JogosComEmpates Table
  (CodigoJogo TinyInt Primary Key)
 
@@ -556,6 +557,7 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 57 And 60 And GolsSelecao1 = GolsSelecao2)
 
+ -- Declarando a Variável do Tipo Tabela @JogosComEmpates para armazenar o código dos jogos empatados --
  Declare @JogosComEmpates Table
  (CodigoJogo TinyInt Primary Key)
 
@@ -700,6 +702,7 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 61 And 62 And GolsSelecao1 = GolsSelecao2)
 
+ -- Declarando a Variável do Tipo Tabela @JogosComEmpates para armazenar o código dos jogos empatados --
  Declare @JogosComEmpates Table
  (CodigoJogo TinyInt Primary Key)
 

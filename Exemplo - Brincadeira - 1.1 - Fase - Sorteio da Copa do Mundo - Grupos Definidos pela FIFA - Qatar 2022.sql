@@ -86,21 +86,29 @@ Create Table Sorteios
   SiglaContinente Char(2) Not Null)
 Go
 
--- Limpando a tabela de Sorteios --
-If (Select Count(*) From Sorteios) >0
- Truncate Table Sorteios
-Go
-	
 -- Populando as Tabelas --
--- Inserindo os 8 Grupos de Selec√µes --
+-- Inserindo os 8 Grupos de Selecıes --
 Insert Into Grupos (SiglaGrupo) Values ('A'),('B'),('C'),('D'),('E'),('F'),('G'),('H')
 Go
 
 -- Inserindo os 4 Potes --
 Insert Into Potes Default Values
 Go 4
-	
--- Inserindo as Sele√ß√µes nos Grupos definidos no Sorteio da Fifa --
+
+-- Inserindo as 32 Selecoes --
+Insert Into Selecoes (NomeSelecao, CodigoPote, SiglaContinente)
+Values ('Qatar',1,'AF'), ('Brasil',1,'AS'),('BÈlgica',1,'EU'),('FranÁa',1,'EU'),('Argentina',1,'AS'),('Inglaterra',1,'EU'),('Espanha',1,'EU'),('Portugal',1,'EU'),
+            ('MÈxico',2,'AC'), ('Holanda',2,'EU'),('Dinamarca',2,'EU'),('Alemanha',2,'EU'),('Uruguai',2,'AS'),('SuÌÁa',2,'EU'),('Estados Unidos',2,'AC'),('Cro·cia',2,'EU'),
+            ('Senegal',3,'AF'), ('Ir„',3,'AA'),('Jap„o',3,'AA'),('Marrocos',3,'AF'),('SÈrvia',3,'EU'),('PolÙnia',3,'EU'),('Coreia do Sul',3,'AA'),('TunÌsia',3,'AF'),
+            ('Camarıes',4,'AF'), ('Canad·',4,'AC'),('Equador',4,'AS'),('Ar·bia Saudita',4,'AA'),('Gana',4,'AF'),('Austr·lia',4,'II'),('Costa Rica',4,'II'),('PaÌs de Gales',4,'EU')
+Go
+
+-- Limpando a tabela de Sorteios --
+If (Select Count(*) From Sorteios) >0
+ Truncate Table Sorteios
+Go
+
+-- Inserindo as SeleÁıes nos Grupos definidos no Sorteio da Fifa --
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 1, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
 Where NomeSelecao In ('Qatar','Equador','Senegal','Holanda')
@@ -108,32 +116,32 @@ Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 2, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
-Where NomeSelecao In ('Inglaterra','Ir√£','Estados Unidos','Pa√≠s de Gales')
+Where NomeSelecao In ('Inglaterra','Ir„','Estados Unidos','PaÌs de Gales')
 Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 3, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
-Where NomeSelecao In ('Argentina','Ar√°bia Saudita','M√©xico','Pol√¥nia')
+Where NomeSelecao In ('Argentina','Ar·bia Saudita','MÈxico','PolÙnia')
 Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 4, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
-Where NomeSelecao In ('Fran√ßa','Austr√°lia','Dinamarca','Tun√≠sia')
+Where NomeSelecao In ('FranÁa','Austr·lia','Dinamarca','TunÌsia')
 Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 5, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
-Where NomeSelecao In ('Espanha','Costa Rica','Alemanha','Jap√£o')
+Where NomeSelecao In ('Espanha','Costa Rica','Alemanha','Jap„o')
 Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 6, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
-Where NomeSelecao In ('B√©lgica','Canad√°','Marrocos','Cro√°cia')
+Where NomeSelecao In ('BÈlgica','Canad·','Marrocos','Cro·cia')
 Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
 Select 7, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
-Where NomeSelecao In ('Brasil','S√©rvia','Su√≠√ßa','Camar√µes')
+Where NomeSelecao In ('Brasil','SÈrvia','SuÌÁa','Camarıes')
 Go
 
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente)
@@ -141,7 +149,7 @@ Select 8, CodigoSelecao, CodigoPote, SiglaContinente From Selecoes
 Where NomeSelecao In ('Portugal','Gana','Uruguai','Coreia do Sul')
 Go
 
--- Consultando a forma√ß√£o completa de cada Grupo de Sele√ß√µes --
+-- Consultando a formaÁ„o completa de cada Grupo de SeleÁıes --
 ;With CTEGrupoA (Posicao, NomeSelecao)
 As
 (Select PosicaoGrupo, SE.NomeSelecao From Sorteios S Inner Join Selecoes SE
