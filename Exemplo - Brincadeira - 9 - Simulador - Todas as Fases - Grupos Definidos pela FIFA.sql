@@ -410,7 +410,7 @@ Begin
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2)
 
  Declare @JogosComEmpates Table
-  (CodigoJogo TinyInt Primary Key)
+ (CodigoJogo TinyInt Primary Key)
 
   Insert Into @JogosComEmpates (CodigoJogo)
   Select CodigoJogo From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2
@@ -750,7 +750,6 @@ Begin
       End
     End
  End
-Go
 Go
 
 Select Replicate('>>>',20) As 'Em execução - Fase - Semi Final - Resultados'
