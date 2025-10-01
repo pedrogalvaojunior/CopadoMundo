@@ -1,5 +1,4 @@
 -- Criando a Stored Procedure P_HistoricoSimulacao --
-
 Create Or Alter Procedure P_HistoricoSimulacao @CodigoSimulador Char(1)
 As
 Begin
@@ -10,12 +9,13 @@ Set NoCount On
 -- Armazenando o Histórico de Jogos realizados --
 Insert Into HistoricoJogos (CodigoSimulador, CodigoJogo, CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, 
                                            GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2,  CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-Select @CodigoSimulador, * From Jogos
+Select @CodigoSimulador, CodigoJogo, CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, 
+                                           GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2,  CartoesVermelhoSelecao1, CartoesVermelhoSelecao2 
+From Jogos
 
 -- Armazenado o Histórico da última Classificação Geral --
 Insert Into HistoricoClassificacaoGeral (CodigoSimulador, CodigoClassificacaoGeral, PosicaoClassificacaoGeral, CodigoSelecao, Jogos, 
                                                                  Pontos, Vitorias, Empates, Derrotas, CartoesAmarelos, CartoesVermelhos, GolsPro, GolsContra, SaldoGols)
-
 Select @CodigoSimulador, CodigoClassificacaoGeral, PosicaoClassificacaoGeral, CodigoSelecao, Jogos, 
            Pontos, Vitorias, Empates, Derrotas, CartoesAmarelos, CartoesVermelhos, GolsPro, GolsContra, SaldoGols
 From ClassificacaoGeral
