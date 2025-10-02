@@ -26,5 +26,9 @@ Pivot (Count(CodigoSelecao) For PosicaoClassificacaoGeral In ([1],[2],[3],[4],[5
 Go
 
 -- Executando --
-Select * From dbo.F_EstatisticaDesempenho16PrimeirasPosicoes('Camarões')
+Declare @NomeSelecaoExtenso Varchar(30)
+
+Set @NomeSelecaoExtenso=(Select Top 1 SelecaoCampea From HistoricoSimulacao Order By CodigoHistoricoSimulacao Desc)
+
+Select * From dbo.F_EstatisticaDesempenho16PrimeirasPosicoes(@NomeSelecaoExtenso)
 Go

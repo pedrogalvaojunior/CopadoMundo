@@ -5,7 +5,7 @@ Go
 -- Apresentando o Histórico de Finais Disputadas, Jogos e Placares --
 Declare @NomeSelecaoExtenso Varchar(30)
 
-Set @NomeSelecaoExtenso='Argentina'
+Set @NomeSelecaoExtenso=(Select Top 1 SelecaoCampea From HistoricoSimulacao Order By CodigoHistoricoSimulacao Desc)
 
 If Exists (Select NomeSelecao From Selecoes Where NomeSelecao=@NomeSelecaoExtenso) 
 Begin
@@ -14,8 +14,6 @@ Begin
             Concat(Convert(Varchar(4),TotalViceCampea),' vez(es)') As 'Vice-Campeã Mundial',
             Convert(Varchar(4),TotalCampea+TotalViceCampea) As 'Total de Final(is) Disputada(s)'
  From dbo.F_HistoricoDeFinais(@NomeSelecaoExtenso) 
-
- Select Replicate('>>>',30) As 'Histórico de Finais Disputadas'
 
  Select @NomeSelecaoExtenso As ' ',
             'Nº '+Convert(Varchar(4),Row_Number() Over(Order By CodigoHistoricoSimulacao)) As 'Final Disputada', 

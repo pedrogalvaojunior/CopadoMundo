@@ -2,6 +2,13 @@
 Use Qatar2022
 Go
 
+-- Criando a Tabela ClassificadosQuartasDeFinal --
+Create Table ClassificadosQuartasDeFinal
+ (CodigoQuartasDeFinal TinyInt Identity(1,1) Primary Key Clustered,
+  CodigoGrupoSorteio TinyInt Not Null,
+  CodigoSelecaoSorteio TinyInt Not Null)
+ Go
+
 -- Inserindo as Seleções Classificadas para as Quartas de Final --
 Insert Into ClassificadosQuartasDeFinal
 Select G.CodigoGrupo, 

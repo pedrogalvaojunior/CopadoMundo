@@ -2,6 +2,13 @@
 Use Qatar2022
 Go
 
+-- Criando a Tabela ClassificadosSemiFinais --
+Create Table ClassificadosSemiFinais
+ (CodigoSemiFinais TinyInt Identity(1,1) Primary Key Clustered,
+  CodigoGrupoSorteio TinyInt Not Null,
+  CodigoSelecaoSorteio TinyInt Not Null)
+ Go
+
 -- Inserindo as Seleções Classificadas para as Semi de Finais --
 Insert Into ClassificadosSemiFinais
 Select G.CodigoGrupo, 
