@@ -8,7 +8,7 @@ Se você criou os grupos de forma aleatória, para realizar a simulação com su
 
 Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de finais disputadas e totais de classificações obtidas ao longo das simulações, os quais devem ser executados somente após a execução do arquivo 9 ou 10.
 
-**Versão 1.0 -- Desenvolvimento entre 01/04 e 15/04**
+**Versão 1.0 -- Desenvolvimento entre 01/04/22 e 15/04/22**
 
 1 - Simulação do 48 jogos da fase de grupos;
 
@@ -42,7 +42,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 
 16 - Histórico das Seleções Campeã e Vice-Campea com base nas simulações realizadas.
 
-**Versão 2.0 - Entre 18/04 e 05/05**
+**Versão 2.0 - Entre 18/04/22 e 05/05/22**
 
 1 - Análise de Desempenho de Finais Disputadas, com base nas simulações realizadas;
 
@@ -54,7 +54,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 
 5 - Redução de tempo de processamento de 0.55 segundos para a média entre  0.07 e 0.10 segundos.
 
-**Versão 3.0 - Desenvolvimento entre 10/05 e 15/06**
+**Versão 3.0 - Desenvolvimento entre 10/05/22 e 15/06/22**
 
 1 - Atualização das seleções participantes.
 
@@ -62,7 +62,7 @@ Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de f
 
 3 - Acréscimo dos arquivos 11 e 12.
 
-**Versão 4.0 - Desenvolvimento entre 06/09 e 07/09**
+**Versão 4.0 - Desenvolvimento entre 06/09/22 e 07/09/22**
 
 1 - Correção de erros referentes a contagens estatística de desempenho relacionado as 16 primeiras posições com base no histórico de simulações realizadas.
 
@@ -78,7 +78,7 @@ Caso o usuário fosse realizar a execução passo a passo, as 16 Seleções defi
 
 1 - Correção aplicada nos arquivos 1.0 e 2.0 - Relacionados ao seu das seleções de acordo com as definições da Fifa.
 
-**Versão 4.3 - Atualização entre 27/09/25 e 29/09/25**
+**Versão 4.3 - Atualização entre 27/09/25 e 02/10/25**
 
 1 - Acréscimo da coluna ProrrogacaoOuPenaltys para controle dos empates ocorridos a partir da Oitavas de final.
 
