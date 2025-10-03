@@ -10,10 +10,13 @@ Return (Select @NomeSelecao As 'Seleção',
                         TotalCampea=(Select Count(CodigoHistoricoSimulacao) From HistoricoSimulacao 
                                                 Where SelecaoCampea=@NomeSelecao),
 						TotalViceCampea=(Select Count(CodigoHistoricoSimulacao) From HistoricoSimulacao 
-                                                        Where SelecaoVice=@NomeSelecao)						)
+                                                        Where SelecaoVice=@NomeSelecao))
 Go
 
 -- Executando --
-Select *, TotalCampea+TotalViceCampea As 'Finais Disputadas'
-From dbo.F_HistoricoDeFinais('Estados Unidos')
+Declare @NomeSelecaoExtenso Varchar(30)
+
+Set @NomeSelecaoExtenso=(Select Top 1 SelecaoCampea From HistoricoSimulacao Order By CodigoHistoricoSimulacao Desc)
+
+Select Seleção, TotalCampea+TotalViceCampea As 'Finais Disputadas' From dbo.F_HistoricoDeFinais(@NomeSelecaoExtenso)
 Go

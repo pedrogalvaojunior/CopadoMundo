@@ -83,45 +83,38 @@ Begin
 
  Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
- Set @GolsSelecao1=1
- Set @GolsSelecao2=1
-
- While @GolsSelecao1 = @GolsSelecao2
-  Begin
-  
-   Set @GolsSelecao1 = Rand()*Rand()*8
-   Set @GolsSelecao2 = Rand()*Rand()*8
-
  While (Select Count(CodigoJogo) From @JogosComEmpates) >0
-     Begin
+  Begin
 
-      If (Select Round(Convert(Float,Rand()),2)) <0.6
-       Begin
-        Select 'A prorrogação está sendo realizada.' As 'Quartas de Final - Prorrogação'
+  Set @GolsSelecao1 = Rand()*Rand()*8
+  Set @GolsSelecao2 = Rand()*Rand()*8
+
+  If (Select Round(Convert(Float,Rand()),2)) <0.6
+   Begin
+    Select 'A prorrogação está sendo realizada.' As 'Quartas de Final - Prorrogação'
      
-        Set @StatusProrrogacaoOuPenaltys = 'PR'
-       End
-       Else
-       Begin
-        Select 'Os penaltys estão sendo realizados.' As 'Quartas de Final - Penaltys'
+    Set @StatusProrrogacaoOuPenaltys = 'PR'
+   End
+   Else
+   Begin
+     Select 'Os penaltys estão sendo realizados.' As 'Quartas de Final - Penaltys'
+     
+     Set @StatusProrrogacaoOuPenaltys = 'PE'
+   End
 
-        Set @StatusProrrogacaoOuPenaltys = 'PE'
-       End
+   If @GolsSelecao1 <> @GolsSelecao2
+    Begin
+      Update Jogos
+      Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
+            GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
+            ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
+      From Jogos J
+      Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
 
-       If @GolsSelecao1 <> @GolsSelecao2
-        Begin
-         Update Jogos
-         Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
-               GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
-               ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
-         From Jogos J
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-
-         Delete From @JogosComEmpates
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-        End
-      End
-    End
+      Delete From @JogosComEmpates
+      Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+   End
+  End
  End
 Go
 

@@ -31,9 +31,6 @@ Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJog
 Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
 Go
 
-Select Replicate('>>>',24) As 'Em execução - Fase - Terceiro Lugar - Análise de Empate'
-Go
-
 -- Eliminando a ocorrência de possível empate no Jogo da Disputa do Terceiro Lugar --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo = 63 And GolsSelecao1 = GolsSelecao2) = 1
 Begin
@@ -54,14 +51,8 @@ Begin
 
  Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
- Set @GolsSelecao1=1
- Set @GolsSelecao2=1
-
- While @GolsSelecao1 =  @GolsSelecao2
-  Begin
-  
-   Set @GolsSelecao1 = Rand()*Rand()*8
-   Set @GolsSelecao2 = Rand()*Rand()*8
+ Set @GolsSelecao1 = Rand()*Rand()*8
+ Set @GolsSelecao2 = Rand()*Rand()*8
 
    If (Select Round(Convert(Float,Rand()),2)) <0.6
     Begin
@@ -85,10 +76,8 @@ Begin
      From Jogos J
      Where CodigoJogo = 63
  
-     Break
-    End
   End
-End
+ End
 Go
 
 -- Consultando o resultado do Jogo - Disputa do Terceiro Lugar --
@@ -121,9 +110,6 @@ Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJog
 Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
 Go
 
-Select Replicate('>>>',27) As 'Em execução - Fase - Final - Análise de Empate'
-Go
-
 -- Eliminando a ocorrência de possível empate na Final --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo = 64 And GolsSelecao1 = GolsSelecao2) =1
 Begin
@@ -144,27 +130,21 @@ Begin
 
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
-  Set @GolsSelecao1 = 1
-  Set @GolsSelecao2 = 1
+  Set @GolsSelecao1 = Rand()*Rand()*8
+  Set @GolsSelecao2 = Rand()*Rand()*8
 
-  While @GolsSelecao1 =  @GolsSelecao2
-  Begin
-  
-   Set @GolsSelecao1 = Rand()*Rand()*8
-   Set @GolsSelecao2 = Rand()*Rand()*8
-
-   If (Select Round(Convert(Float,Rand()),2)) <0.6
-    Begin
-     Select 'A prorrogação está sendo realizada.' As 'Final - Prorrogação'
+  If (Select Round(Convert(Float,Rand()),2)) <0.6
+   Begin
+    Select 'A prorrogação está sendo realizada.' As 'Final - Prorrogação'
      
-     Set @StatusProrrogacaoOuPenaltys = 'PR'
-    End
+    Set @StatusProrrogacaoOuPenaltys = 'PR'
+   End
    Else
-    Begin
-     Select 'Os penaltys estão sendo realizados.' As 'Final - Penaltys'
+   Begin
+    Select 'Os penaltys estão sendo realizados.' As 'Final - Penaltys'
 
-     Set @StatusProrrogacaoOuPenaltys = 'PE'
-    End
+    Set @StatusProrrogacaoOuPenaltys = 'PE'
+   End
 
    If @GolsSelecao1 <> @GolsSelecao2
     Begin
@@ -176,10 +156,8 @@ Begin
      From Jogos J
      Where CodigoJogo = 64
  
-     Break
-    End
+   End
   End
-End
 Go
 
 -- Consultando o resultado do Jogo - Final --

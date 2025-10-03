@@ -83,47 +83,40 @@ Begin
  
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
-  Set @GolsSelecao1=1
-  Set @GolsSelecao2=1
-
-  While @GolsSelecao1 = @GolsSelecao2
+  While (Select Count(CodigoJogo) From @JogosComEmpates) >0
    Begin
-  
+    
     Set @GolsSelecao1 = Rand()*Rand()*8
     Set @GolsSelecao2 = Rand()*Rand()*8
 
-    While (Select Count(CodigoJogo) From @JogosComEmpates) >0
-     Begin
-
-      If (Select Round(Convert(Float,Rand()),2)) <0.6
-       Begin
-        Select 'A prorrogação está sendo realizada.' As 'Semi Final - Prorrogação'
+    If (Select Round(Convert(Float,Rand()),2)) <0.6
+    Begin
+      Select 'A prorrogação está sendo realizada.' As 'Semi Final - Prorrogação'
      
-        Set @StatusProrrogacaoOuPenaltys = 'PR'
-       End
-       Else
-       Begin
-        Select 'Os penaltys estão sendo realizados.' As 'Semi Final - Penaltys'
-
-        Set @StatusProrrogacaoOuPenaltys = 'PE'
-       End
-
-       If @GolsSelecao1 <> @GolsSelecao2
-        Begin
-         Update Jogos
-         Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
-               GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
-               ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
-         From Jogos J
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-
-         Delete From @JogosComEmpates
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-        End
-      End
+      Set @StatusProrrogacaoOuPenaltys = 'PR'
     End
- End
-Go
+    Else
+    Begin
+     Select 'Os penaltys estão sendo realizados.' As 'Semi Final - Penaltys'
+
+     Set @StatusProrrogacaoOuPenaltys = 'PE'
+    End
+
+    If @GolsSelecao1 <> @GolsSelecao2
+     Begin
+      Update Jogos
+      Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
+            GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
+            ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
+      From Jogos J
+      Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+
+      Delete From @JogosComEmpates
+      Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+     End
+    End
+   End
+ Go
 
 -- Consultando os Jogos da Fase Semi Final - Resultados e Vencedores --
 Select Concat('Jogo nº ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Semi Final',

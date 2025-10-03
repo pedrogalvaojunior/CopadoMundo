@@ -390,7 +390,7 @@ While (Select Count(CodigoJogo) From Jogos) <= 56
 										  And ClassificacaoFinalNoGrupo=2)
 
   Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2, CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-  Values (@CodigoGrupoSorteioInicial,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
+  Values (@CodigoGrupoSorteioInicial,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
 
   Set @CodigoSelecao1 = (Select CodigoSelecaoSorteio From ClassificadosOitavasDeFinal
 										   Where CodigoGrupoSorteio=@CodigoGrupoSorteioFinal
@@ -401,7 +401,7 @@ While (Select Count(CodigoJogo) From Jogos) <= 56
 											And ClassificacaoFinalNoGrupo=2)
 
   Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2, CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-  Values (@CodigoGrupoSorteioFinal,@CodigoSelecao1,@CodigoSelecao2, 2, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
+  Values (@CodigoGrupoSorteioFinal,@CodigoSelecao1,@CodigoSelecao2, 2, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
 
   If (Select Count(CodigoJogo) From Jogos) In (50,52,54,56)
    Begin
@@ -435,7 +435,7 @@ Begin
 
  -- Declarando a Variável do Tipo Tabela @JogosComEmpates para armazenar o código dos jogos empatados --
  Declare @JogosComEmpates Table
-  (CodigoJogo TinyInt Primary Key)
+ (CodigoJogo TinyInt Primary Key)
 
   Insert Into @JogosComEmpates (CodigoJogo)
   Select CodigoJogo From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2
@@ -444,45 +444,39 @@ Begin
  
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
-  Set @GolsSelecao1=1
-  Set @GolsSelecao2=1
-
-  While @GolsSelecao1 = @GolsSelecao2
+  While (Select Count(CodigoJogo) From @JogosComEmpates) >0
    Begin
   
     Set @GolsSelecao1 = Rand()*Rand()*8
     Set @GolsSelecao2 = Rand()*Rand()*8
 
-    While (Select Count(CodigoJogo) From @JogosComEmpates) >0
+    -- Fator de análise para definição de Prorrogação ou Penaltys --
+    If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
      Begin
-
-      If (Select Round(Convert(Float,Rand()),2)) <0.6
-       Begin
-        Select 'A prorrogação está sendo realizada.' As 'Oitavas de Final - Prorrogação'
+      Select 'A prorrogação está sendo realizada.' As 'Oitavas de Final - Prorrogação'
      
-        Set @StatusProrrogacaoOuPenaltys = 'PR'
-       End
-       Else
-       Begin
+      Set @StatusProrrogacaoOuPenaltys = 'PR'
+     End
+     Else
+     Begin
         Select 'Os penaltys estão sendo realizados.' As 'Oitavas de Final - Penaltys'
 
-        Set @StatusProrrogacaoOuPenaltys = 'PE'
-       End
-
-       If @GolsSelecao1 <> @GolsSelecao2
-        Begin
-         Update Jogos
-         Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
-               GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
-               ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
-         From Jogos J
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-
-         Delete From @JogosComEmpates
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-        End
+       Set @StatusProrrogacaoOuPenaltys = 'PE'
       End
-    End
+
+      If @GolsSelecao1 <> @GolsSelecao2
+       Begin
+        Update Jogos
+        Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
+              GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
+              ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
+        From Jogos J
+        Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+
+        Delete From @JogosComEmpates
+        Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+       End
+      End          
  End
 Go
 
@@ -493,7 +487,7 @@ Go
 Select Concat('Jogo nº ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Oitavas de Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  'Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
 		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
            End As 'Vencedor'
 From Jogos J Inner Join Grupos G
@@ -544,8 +538,8 @@ Declare @CodigoQuartasDeFinal1 TinyInt, @CodigoQuartasDeFinal2 TinyInt, @CodigoS
 Set @CodigoQuartasDeFinal1 = 1
 Set @CodigoQuartasDeFinal2 = 2
 
-Set @CodigoSelecao1 = 1
-Set @CodigoSelecao2 = 1
+Set @CodigoSelecao1=1
+Set @CodigoSelecao2=1
 
 While @CodigoQuartasDeFinal1 <=7
  Begin
@@ -554,7 +548,7 @@ While @CodigoQuartasDeFinal1 <=7
   Set @CodigoSelecao2 = (Select CodigoSelecaoSorteio From ClassificadosQuartasDeFinal Where CodigoQuartasDeFinal = @CodigoQuartasDeFinal2)
   
   Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2, CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-  Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
+  Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
   
   Set @CodigoQuartasDeFinal1 = @CodigoQuartasDeFinal1 + 2
   Set @CodigoQuartasDeFinal2 = @CodigoQuartasDeFinal2 + 2
@@ -592,46 +586,40 @@ Begin
 
  Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
- Set @GolsSelecao1=1
- Set @GolsSelecao2=1
-
- While @GolsSelecao1 = @GolsSelecao2
+ While (Select Count(CodigoJogo) From @JogosComEmpates) >0
   Begin
-  
+
    Set @GolsSelecao1 = Rand()*Rand()*8
    Set @GolsSelecao2 = Rand()*Rand()*8
+  
+  -- Fator de análise para definição de Prorrogação ou Penaltys --
+   If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
+    Begin
+     Select 'A prorrogação está sendo realizada.' As 'Quartas de Final - Prorrogação'
+    
+    Set @StatusProrrogacaoOuPenaltys = 'PR'
+   End
+   Else
+    Begin
+     Select 'Os penaltys estão sendo realizados.' As 'Quartas de Final - Penaltys'
 
- While (Select Count(CodigoJogo) From @JogosComEmpates) >0
-     Begin
-
-      If (Select Round(Convert(Float,Rand()),2)) <0.6
-       Begin
-        Select 'A prorrogação está sendo realizada.' As 'Quartas de Final - Prorrogação'
-     
-        Set @StatusProrrogacaoOuPenaltys = 'PR'
-       End
-       Else
-       Begin
-        Select 'Os penaltys estão sendo realizados.' As 'Quartas de Final - Penaltys'
-
-        Set @StatusProrrogacaoOuPenaltys = 'PE'
-       End
-
-       If @GolsSelecao1 <> @GolsSelecao2
-        Begin
-         Update Jogos
-         Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
-               GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
-               ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
-         From Jogos J
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-
-         Delete From @JogosComEmpates
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-        End
-      End
+     Set @StatusProrrogacaoOuPenaltys = 'PE'
     End
- End
+
+    If @GolsSelecao1 <> @GolsSelecao2
+     Begin
+      Update Jogos
+      Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
+            GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
+            ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
+      From Jogos J
+      Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+
+      Delete From @JogosComEmpates
+      Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+     End
+    End
+   End
 Go
 
 Select Replicate('>>>',16) As 'Em execução - Fase - Quartas de Final - Resultados'
@@ -641,7 +629,7 @@ Go
 Select Concat('Jogo nº ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Quartas de Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  'Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
 		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
            End As 'Vencedor'
 From Jogos J Inner Join Grupos G
@@ -689,8 +677,8 @@ Declare @CodigoSemiFinal1 TinyInt, @CodigoSemiFinal2 TinyInt, @CodigoSelecao1 Ti
 Set @CodigoSemiFinal1 = 1
 Set @CodigoSemiFinal2 = 2
 
-Set @CodigoSelecao1 = 1
-Set @CodigoSelecao2 = 1
+Set @CodigoSelecao1=1
+Set @CodigoSelecao2=1
 
 While @CodigoSemiFinal1 <=3
  Begin
@@ -699,7 +687,7 @@ While @CodigoSemiFinal1 <=3
   Set @CodigoSelecao2 = (Select CodigoSelecaoSorteio From ClassificadosSemiFinais Where CodigoSemiFinais = @CodigoSemiFinal2)
   
   Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2, CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-  Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
+  Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
   
   Set @CodigoSemiFinal1 = @CodigoSemiFinal1 + 2
   Set @CodigoSemiFinal2 = @CodigoSemiFinal2 + 2
@@ -737,47 +725,41 @@ Begin
  
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
-  Set @GolsSelecao1=1
-  Set @GolsSelecao2=1
-
-  While @GolsSelecao1 = @GolsSelecao2
+  While (Select Count(CodigoJogo) From @JogosComEmpates) >0
    Begin
-  
+
     Set @GolsSelecao1 = Rand()*Rand()*8
     Set @GolsSelecao2 = Rand()*Rand()*8
 
-    While (Select Count(CodigoJogo) From @JogosComEmpates) >0
+    -- Fator de análise para definição de Prorrogação ou Penaltys --    
+    If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
      Begin
-
-      If (Select Round(Convert(Float,Rand()),2)) <0.6
-       Begin
-        Select 'A prorrogação está sendo realizada.' As 'Semi Final - Prorrogação'
+      Select 'A prorrogação está sendo realizada.' As 'Semi Final - Prorrogação'
      
-        Set @StatusProrrogacaoOuPenaltys = 'PR'
-       End
-       Else
-       Begin
-        Select 'Os penaltys estão sendo realizados.' As 'Semi Final - Penaltys'
+      Set @StatusProrrogacaoOuPenaltys = 'PR'
+     End
+     Else
+      Begin
+       Select 'Os penaltys estão sendo realizados.' As 'Semi Final - Penaltys'
 
-        Set @StatusProrrogacaoOuPenaltys = 'PE'
-       End
-
-       If @GolsSelecao1 <> @GolsSelecao2
-        Begin
-         Update Jogos
-         Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
-               GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
-               ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
-         From Jogos J
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-
-         Delete From @JogosComEmpates
-         Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
-        End
+       Set @StatusProrrogacaoOuPenaltys = 'PE'
       End
-    End
- End
-Go
+
+      If @GolsSelecao1 <> @GolsSelecao2
+       Begin
+        Update Jogos
+        Set GolsSelecao1 = J.GolsSelecao1+@GolsSelecao1,
+              GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
+              ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
+        From Jogos J
+        Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+
+        Delete From @JogosComEmpates
+        Where CodigoJogo = (Select Top 1 CodigoJogo From @JogosComEmpates)
+       End
+     End
+   End
+ Go
 
 Select Replicate('>>>',20) As 'Em execução - Fase - Semi Final - Resultados'
 Go
@@ -786,7 +768,7 @@ Go
 Select Concat('Jogo nº ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Semi Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  'Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
 		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorrogação' End)
            End As 'Disputa Final',
 		   Case 
@@ -872,7 +854,7 @@ Set @CodigoSelecao1 = (Select CodigoSelecaoSorteio From ClassificadosTerceiroLug
 Set @CodigoSelecao2 = (Select CodigoSelecaoSorteio From ClassificadosTerceiroLugar Where CodigoTerceiroLugar = 2)
   
 Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2, CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
+Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
 Go
 
 Select Replicate('>>>',24) As 'Em execução - Fase - Terceiro Lugar - Análise de Empate'
@@ -898,27 +880,21 @@ Begin
 
  Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
- Set @GolsSelecao1=1
- Set @GolsSelecao2=1
+ Set @GolsSelecao1 = Rand()*Rand()*8
+ Set @GolsSelecao2 = Rand()*Rand()*8
 
- While @GolsSelecao1 =  @GolsSelecao2
+ If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
   Begin
-  
-   Set @GolsSelecao1 = Rand()*Rand()*8
-   Set @GolsSelecao2 = Rand()*Rand()*8
-
-   If (Select Round(Convert(Float,Rand()),2)) <0.6
-    Begin
-     Select 'A prorrogação está sendo realizada.' As 'Terceiro Lugar - Prorrogação'
+   Select 'A prorrogação está sendo realizada.' As 'Terceiro Lugar - Prorrogação'
      
-     Set @StatusProrrogacaoOuPenaltys = 'PR'
-    End
-   Else
-    Begin
-     Select 'Os penaltys estão sendo realizados.' As 'Terceiro Lugar - Penaltys'
+   Set @StatusProrrogacaoOuPenaltys = 'PR'
+  End
+  Else
+   Begin
+    Select 'Os penaltys estão sendo realizados.' As 'Terceiro Lugar - Penaltys'
 
-     Set @StatusProrrogacaoOuPenaltys = 'PE'
-    End
+    Set @StatusProrrogacaoOuPenaltys = 'PE'
+   End
 
    If @GolsSelecao1 <> @GolsSelecao2
     Begin
@@ -927,12 +903,9 @@ Begin
            GolsSelecao2 = J.GolsSelecao2+@GolsSelecao2,
            ProrrogacaoOuPenaltys = @StatusProrrogacaoOuPenaltys
      From Jogos J
-     Where CodigoJogo = 63
- 
-     Break
+     Where CodigoJogo = 63 
     End
   End
-End
 Go
 
 Select Replicate('>>>',25) As 'Em execução - Fase - Terceiro Lugar - Resultado'
@@ -968,7 +941,7 @@ Set @CodigoSelecao1 = (Select CodigoSelecaoSorteio From ClassificadosFinal Where
 Set @CodigoSelecao2 = (Select CodigoSelecaoSorteio From ClassificadosFinal Where CodigoFinal = 2)
   
 Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJogoNoGrupo, GolsSelecao1, GolsSelecao2, CartoesAmareloSelecao1, CartoesAmareloSelecao2, CartoesVermelhoSelecao1, CartoesVermelhoSelecao2)
-Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*10,Rand()*10,Rand()*4,Rand()*4)
+Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
 Go
 
 Select Replicate('>>>',27) As 'Em execução - Fase - Final - Análise de Empate'
@@ -994,16 +967,10 @@ Begin
 
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
-  Set @GolsSelecao1 = 1
-  Set @GolsSelecao2 = 1
+  Set @GolsSelecao1 = Rand()*Rand()*8
+  Set @GolsSelecao2 = Rand()*Rand()*8
 
-  While @GolsSelecao1 =  @GolsSelecao2
-  Begin
-  
-   Set @GolsSelecao1 = Rand()*Rand()*8
-   Set @GolsSelecao2 = Rand()*Rand()*8
-
-   If (Select Round(Convert(Float,Rand()),2)) <0.6
+   If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
     Begin
      Select 'A prorrogação está sendo realizada.' As 'Final - Prorrogação'
      
@@ -1026,10 +993,8 @@ Begin
      From Jogos J
      Where CodigoJogo = 64
  
-     Break
     End
   End
-End
 Go
 
 Select Replicate('>>>',28) As 'Em execução - Fase - Final - Resultado'
@@ -1059,7 +1024,7 @@ Exec P_ClassificacaoGeral
 Go
 
 -- Processando o Histórico de Simulações - Armazenando os Histórico de Jogos, Classificação e Atualizando a Contagem de Simulações realizadas --
-Exec P_HistoricoSimulacao 'A'
+Exec P_HistoricoSimulacao 'F'
 Go
 
 -- Atualizando o Histórico - Estatística de Desempenho - 16 Primeiras Posições'
