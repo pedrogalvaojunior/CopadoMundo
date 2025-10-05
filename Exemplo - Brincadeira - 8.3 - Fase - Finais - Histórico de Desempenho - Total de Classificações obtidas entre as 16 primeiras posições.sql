@@ -1,3 +1,7 @@
+-- Acessando --
+Use Qatar2022
+Go
+
 -- Criando a Stored Procedure P_AtualizarHistoricoEstatisticaDesempenho --
 Create Or Alter Procedure P_AtualizarHistoricoEstatisticaDesempenho
 As

@@ -2,6 +2,7 @@
 Use Qatar2022
 Go
 
+-- Criando a Stored Procedure P_ClassificacaoGrupoE --
 Create Or Alter Procedure P_ClassificacaoGrupoE
 As
 Begin
@@ -13,7 +14,7 @@ Set NoCount On
 Update GrupoE
 Set Pontos = 0, Vitorias = 0, Empates=0, Derrotas=0, GolsPro=0, GolsContra=0
 
--- Atualizando a Tabela de Classificação Grupo A --
+-- Atualizando a Tabela de Classificação Grupo E --
 Declare @ContadorDeJogos TinyInt, 
              @CodigoSelecao1 TinyInt, @CodigoSelecao2 TinyInt, @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt
 
@@ -82,7 +83,7 @@ While @ContadorDeJogos <=6
   Set @ContadorDeJogos = @ContadorDeJogos + 1
 End
 
--- Atualizando a Classificação Final definindo a posição de cada Seleção no Grupo A --
+-- Atualizando a Classificação Final definindo a posição de cada Seleção no Grupo E --
 ;With ClassificacaoFinalGrupoE (ClassificacaoFinal, PosicaoGrupoSorteio, CodigoSelecaoSorteio)
 As
 (

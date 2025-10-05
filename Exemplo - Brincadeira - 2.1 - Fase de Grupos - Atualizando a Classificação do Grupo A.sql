@@ -2,6 +2,7 @@
 Use Qatar2022
 Go
 
+-- Criando a Stored Procedure --
 Create Or Alter Procedure P_ClassificacaoGrupoA
 As
 Begin
