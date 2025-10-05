@@ -1,91 +1,81 @@
-# CopadoMundo
 
-Para realizar a execução de forma correta, basta seguir a ordem de numeração apresentada no nome dos arquivos.
+# 🏆 CopadoMundo - Simulador da Copa do Mundo 2022
 
-Você poderá realizar o sorteio de forma aleatória, no qual tanto os grupos como as seleções serão distribuídas de acordo com a ordem definida pelo SQL Server através do arquivo 1, ou escolher o sorteio dirigido o qual foi realizado pela Fifa no dia 01/04 executando o arquivo 1.1.
+Este projeto apresenta um simulador completo da Copa do Mundo FIFA 2022, com funcionalidades que permitem a criação de grupos, execução de partidas, análise de desempenho e geração de estatísticas históricas com base em simulações.
 
-Se você criou os grupos de forma aleatória, para realizar a simulação com sucesso execute o arquivo 9, caso contrário execute o arquivo 10.
+---
 
-Os arquivos 11 e 12 tem como objetivo apresentar o histórico de desempenho de finais disputadas e totais de classificações obtidas ao longo das simulações, os quais devem ser executados somente após a execução do arquivo 9 ou 10.
+## 🚀 Como Executar o Projeto
 
-**Versão 1.0 -- Desenvolvimento entre 01/04/22 e 15/04/22**
+Para garantir a execução correta, siga **rigorosamente a ordem de numeração** dos arquivos conforme descrito abaixo:
 
-1 - Simulação do 48 jogos da fase de grupos;
+### 🔢 Etapas de Execução
 
-2 - Definição das 16 seleções classificadas para a fase de Oitavas de Final;
+#### 🔧 Preparação do Ambiente
+**1 - Criando o Ambiente - Simulador - Copa do Mundo 2022**  
+Prepara o ambiente necessário para rodar o simulador. Deve ser executado antes de qualquer outro arquivo.
 
-3 - Simulação dos 8 jogos da fase de Oitavas de Final;
+#### 🎲 Sorteio dos Grupos
+Escolha uma das opções abaixo:
 
-4 - Definição das 8 seleções classificadas para a fase de Quartas de Final;
+- **1.0 - Sorteio Aleatório**  
+  Realiza o sorteio dos grupos e distribui as seleções de forma aleatória, com base na ordenação do SQL Server.
 
-5 - Simulação dos 4 jogos da fase de Quartas de Final;
+- **1.1 - Sorteio Dirigido (FIFA)**  
+  Utiliza os grupos oficiais definidos pela FIFA no sorteio realizado em 01/04.
 
-6 - Definição das 4 seleções classificadas para a fase de Semi Final;
+#### 🏆 Simulação das Fases
+Execute os arquivos conforme o tipo de sorteio escolhido:
 
-7 - Simulação dos 2 jogos da fase de Semi Final;
+- Se usou **sorteio aleatório (1.0)** → execute o arquivo **9**
+- Se usou **sorteio dirigido (1.1)** → execute o arquivo **10**
 
-8 - Definição das seleções classificadas para Disputa de Terceiro Lugar e a Grande Final;
+#### 📊 Análises Estatísticas
+Após a simulação, execute os arquivos abaixo para visualizar os resultados:
 
-9 - Simulação dos 2 jogos referentes a disputa de Terceiro Lugar e Grande Final;
+- **11 - Histórico de Finais Disputadas**
+- **12 - Classificações Totais Obtidas**
 
-10 - Análise de Empates e simulação de prorrogação ou penaltys a parte da fase de Oitavas de Final;
+---
 
-11 - Classificação Final respeitando a posição da disputa de Terceiro e Quarto Lugares, Vice-Campeão e Campeão Mundial;
+## 📦 Funcionalidades por Versão
 
-12 - Classificação Final das 32 seleções participantes da Fifa World Cup de acordo com a pontuação obtida;
+### 🔸 Versão 1.0 (01/04/22 a 15/04/22)
+- Simulação completa das fases: grupos, oitavas, quartas, semi, final e terceiro lugar
+- Análise de empates com prorrogação ou pênaltis
+- Classificação final das seleções por pontuação e critérios FIFA
+- Histórico de jogos, classificações e campeões
 
-13 - Classificação Final das 32 seleções participantes da Fifa World Cup de acordo com os critérios de avaliação da Fifa;
+### 🔸 Versão 2.0 (18/04/22 a 05/05/22)
+- Estatísticas de desempenho nas finais e posições
+- Nova barra de progresso
+- Redução do tempo médio de processamento para ~0.07s
 
-14 - Histórico de Jogos com base nas simulações realizadas;
+### 🔸 Versão 3.0 (10/05/22 a 15/06/22)
+- Atualização das seleções participantes
+- Correção de erros em simulações de pênaltis
+- Inclusão dos arquivos 11 e 12
 
-15 - Histórico de Classificações com base nas simulações realizadas; e
+### 🔸 Versão 4.0 (06/09/22 a 07/09/22)
+- Correções nas estatísticas das 16 primeiras posições
+- Acréscimo do arquivo 8.3
 
-16 - Histórico das Seleções Campeã e Vice-Campea com base nas simulações realizadas.
+### 🔸 Versão 4.1 (09/11/23 a 10/11/23)
+- Correção na definição das 16 seleções classificadas para as oitavas
 
-**Versão 2.0 - Entre 18/04/22 e 05/05/22**
+### 🔸 Versão 4.2 (09/01/24 a 11/01/24)
+- Correções nos arquivos 1.0 e 2.0 relacionados à definição das seleções da FIFA
 
-1 - Análise de Desempenho de Finais Disputadas, com base nas simulações realizadas;
+### 🔸 Versão 4.3 (27/09/25 a 02/10/25)
+- Inclusão da coluna `ProrrogacaoOuPenaltys` para controle de empates
+- Simulação condicional de prorrogação ou pênaltis
+- Melhor apresentação dos resultados finais
+- Correções nas fases de quartas e semi-final
+- Redução do tempo médio de processamento para ~0.05s
 
-2 - Estatística de Desempenho em relação as 16 primeiras posições, com base nas simulações realizadas;
+---
 
-3 - Apresentação da Análise de Desempenho das Finais Disputadas, de acordo com a seleção definida como Campeã Mundial ao final do processamento da simulação; 
-
-4 - Nova barra de progresso apresentada ao longo da execução da simualação; e
-
-5 - Redução de tempo de processamento de 0.55 segundos para a média entre  0.07 e 0.10 segundos.
-
-**Versão 3.0 - Desenvolvimento entre 10/05/22 e 15/06/22**
-
-1 - Atualização das seleções participantes.
-
-2 - Correção de erros relacionados aos placares referente a simulação de penaltys.
-
-3 - Acréscimo dos arquivos 11 e 12.
-
-**Versão 4.0 - Desenvolvimento entre 06/09/22 e 07/09/22**
-
-1 - Correção de erros referentes a contagens estatística de desempenho relacionado as 16 primeiras posições com base no histórico de simulações realizadas.
-
-2 - Acréscimo do arquivo 8.3.
-
-**Versão 4.1 - Atualização entre 09/11/23 e 10/11/23**
-
-1 - Correção aplicada ao arquivo - 3 - Fase - Oitavas de Finais - Definição das 16 Seleções Classificadas.
-
-Caso o usuário fosse realizar a execução passo a passo, as 16 Seleções definidas para a fase de oitavas de finais não seriam apresentadas.
-
-**Versão 4.2 - Atualização entre 09/01/24 e 11/01/24**
-
-1 - Correção aplicada nos arquivos 1.0 e 2.0 - Relacionados ao seu das seleções de acordo com as definições da Fifa.
-
-**Versão 4.3 - Atualização entre 27/09/25 e 02/10/25**
-
-1 - Acréscimo da coluna ProrrogacaoOuPenaltys para controle dos empates ocorridos a partir da Oitavas de final.
-
-2 - Validação condicional da ocorrência de prorrogação ou penaltys, aplicando um fator de controle para simular a prorrogação ou penalty, armazenado na tabela de jogos o status, e permitindo exibir qual seleção venceu na prorrogação ou penalty.
-
-3 - Melhorias nas forma de apresentação da Seleção Campeão do Mundo e Vice.
-
-4 - Correção nas análise condições para as fases de quartas de final e semi-final.
-
-5 - Diminuição do tempo médio de processamento para menos de 0.05 e 0.07 segundos.
+## 📌 Observações
+- Para melhor experiência, siga a ordem de execução dos arquivos conforme indicado.
+- As versões posteriores incluem melhorias de desempenho e correções importantes.
+- O projeto é ideal para fins didáticos, estatísticos e simulações esportivas.
