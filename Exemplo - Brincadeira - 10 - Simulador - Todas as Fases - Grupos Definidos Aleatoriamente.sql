@@ -6,10 +6,10 @@ Go
 Set NoCount On
 Go
 
-Select Replicate('>>>',2) As 'Em execuÁ„o - Preparando as tabelas internas'
+Select Replicate('>>>',2) As 'Em execu√ß√£o - Preparando as tabelas internas'
 Go
 
--- Limpando todas as tabelas, para garantir o armazenamento correto dos dados da nova simulaÁ„o --
+-- Limpando todas as tabelas, para garantir o armazenamento correto dos dados da nova simula√ß√£o --
 Truncate Table Grupos
 Truncate Table Potes
 Truncate Table Selecoes
@@ -31,11 +31,11 @@ Truncate Table ClassificadosFinal
 Truncate Table ClassificacaoGeral
 Go
 
-Select Replicate('>>>',3) As 'Em execuÁ„o - Populando as tabelas internas com os dados padrıes'
+Select Replicate('>>>',3) As 'Em execu√ß√£o - Populando as tabelas internas com os dados padr√µes'
 Go
 
 -- Populando as Tabelas --
--- Inserindo os 8 Grupos de Selecıes --
+-- Inserindo os 8 Grupos de Selec√µes --
 Insert Into Grupos (SiglaGrupo) Values ('A'),('B'),('C'),('D'),('E'),('F'),('G'),('H')
 Go
 
@@ -45,23 +45,23 @@ Go 4
 
 -- Inserindo as 32 Selecoes --
 Insert Into Selecoes (NomeSelecao, CodigoPote, SiglaContinente)
-Values ('Qatar',1,'AF'), ('Brasil',1,'AS'),('BÈlgica',1,'EU'),('FranÁa',1,'EU'),('Argentina',1,'AS'),('Inglaterra',1,'EU'),('Espanha',1,'EU'),('Portugal',1,'EU'),
-            ('MÈxico',2,'AC'), ('Holanda',2,'EU'),('Dinamarca',2,'EU'),('Alemanha',2,'EU'),('Uruguai',2,'AS'),('SuÌÁa',2,'EU'),('Estados Unidos',2,'AC'),('Cro·cia',2,'EU'),
-            ('Senegal',3,'AF'), ('Ir„',3,'AA'),('Jap„o',3,'AA'),('Marrocos',3,'AF'),('SÈrvia',3,'EU'),('PolÙnia',3,'EU'),('Coreia do Sul',3,'AA'),('TunÌsia',3,'AF'),
-            ('Camarıes',4,'AF'), ('Canad·',4,'AC'),('Equador',4,'AS'),('Ar·bia Saudita',4,'AA'),('Gana',4,'AF'),('Austr·lia',4,'II'),('Costa Rica',4,'II'),('PaÌs de Gales',4,'EU')
+Values ('Qatar',1,'AF'), ('Brasil',1,'AS'),('B√©lgica',1,'EU'),('Fran√ßa',1,'EU'),('Argentina',1,'AS'),('Inglaterra',1,'EU'),('Espanha',1,'EU'),('Portugal',1,'EU'),
+            ('M√©xico',2,'AC'), ('Holanda',2,'EU'),('Dinamarca',2,'EU'),('Alemanha',2,'EU'),('Uruguai',2,'AS'),('Su√≠√ßa',2,'EU'),('Estados Unidos',2,'AC'),('Cro√°cia',2,'EU'),
+            ('Senegal',3,'AF'), ('Ir√£',3,'AA'),('Jap√£o',3,'AA'),('Marrocos',3,'AF'),('S√©rvia',3,'EU'),('Pol√¥nia',3,'EU'),('Coreia do Sul',3,'AA'),('Tun√≠sia',3,'AF'),
+            ('Camar√µes',4,'AF'), ('Canad√°',4,'AC'),('Equador',4,'AS'),('Ar√°bia Saudita',4,'AA'),('Gana',4,'AF'),('Austr√°lia',4,'II'),('Costa Rica',4,'II'),('Pa√≠s de Gales',4,'EU')
 Go
 
-Select Replicate('>>>',4) As 'Em execuÁ„o - Sorteio dos Grupos'
+Select Replicate('>>>',4) As 'Em execu√ß√£o - Sorteio dos Grupos'
 Go
 
--- Definindo a SeleÁ„o Dona da Casa no Grupo A posiÁ„o 1 --
+-- Definindo a Sele√ß√£o Dona da Casa no Grupo A posi√ß√£o 1 --
 Insert Into Sorteios (CodigoGrupo, CodigoSelecao, PosicaoGrupo, SiglaContinente) Values (1,1,1,'AF')
 Go
 
--- Definindo as vari·veis de controle --
+-- Definindo as vari√°veis de controle --
 Declare @CodigoGrupo TinyInt, @CodigoSelecao TinyInt, @PosicaoGrupo TinyInt, @SiglaContinente Char(2)
 
--- Definindo as demais SeleÁıes CabeÁa de Chave e PosiÁ„o 1 --
+-- Definindo as demais Sele√ß√µes Cabe√ßa de Chave e Posi√ß√£o 1 --
 While (Select Count(CodigoSorteio) From Sorteios) <8
  Begin
 
@@ -79,11 +79,11 @@ While (Select Count(CodigoSorteio) From Sorteios) <8
 End
 Go
 
-Select Replicate('>>>',4) As 'Em execuÁ„o - DefiniÁ„o dos Grupos'
+Select Replicate('>>>',4) As 'Em execu√ß√£o - Defini√ß√£o dos Grupos'
 Go
 
 -- Realizando o Sorteio dos Grupos de Selecoes --
--- Definindo as vari·veis de controle --
+-- Definindo as vari√°veis de controle --
 Declare @CodigoGrupo TinyInt, @CodigoPote TinyInt, @CodigoSelecao TinyInt, @PosicaoGrupo TinyInt, @SiglaContinente Char(2)
 
 Set @CodigoPote = 2
@@ -119,10 +119,10 @@ Begin
 End
 Go
 
-Select Replicate('>>>',5) As 'Em execuÁ„o - Grupos Definidos'
+Select Replicate('>>>',5) As 'Em execu√ß√£o - Grupos Definidos'
 Go
 
--- Consultando a formaÁ„o completa de cada Grupo de SeleÁıes --
+-- Consultando a forma√ß√£o completa de cada Grupo de Sele√ß√µes --
 ;With CTEGrupoA (Posicao, NomeSelecao)
 As
 (Select PosicaoGrupo, SE.NomeSelecao From Sorteios S Inner Join Selecoes SE
@@ -184,7 +184,7 @@ From CTEGrupoA A Inner Join CTEGrupoB B
                                 On A.Posicao = H.Posicao
 Go
 
--- Populandos os respectivos Grupos de acordo com as SeleÁıes Sorteios --
+-- Populandos os respectivos Grupos de acordo com as Sele√ß√µes Sorteios --
 Insert Into GrupoA (CodigoGrupoSorteio, PosicaoGrupoSorteio, CodigoSelecaoSorteio)
 Select CodigoGrupo, PosicaoGrupo, CodigoSelecao From Sorteios
 Where CodigoGrupo = 1
@@ -225,7 +225,7 @@ Select CodigoGrupo, PosicaoGrupo, CodigoSelecao From Sorteios
 Where CodigoGrupo = 8
 Go
 
-Select Replicate('>>>',6) As 'Em execuÁ„o - Fase de Grupos - SimulaÁ„o dos Jogos'
+Select Replicate('>>>',6) As 'Em execu√ß√£o - Fase de Grupos - Simula√ß√£o dos Jogos'
 Go
 
 -- Criando os 48 Jogos da Fase de Grupos --
@@ -275,11 +275,11 @@ While (Select Count(CodigoJogo) From Jogos) <=48
 End
 Go
 
-Select Replicate('>>>',7) As 'Em execuÁ„o - Fase de Grupos - Resultados'
+Select Replicate('>>>',7) As 'Em execu√ß√£o - Fase de Grupos - Resultados'
 Go
 
 -- Consultando os 48 Jogos da Fase de Grupo - Resultados e Vencedores --
-Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Fase de Grupos',
+Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Fase de Grupos',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
 		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao,' Venceu')
@@ -296,10 +296,10 @@ From Jogos J Inner Join Grupos G
 Order By J.CodigoJogo
 Go
 
-Select Replicate('>>>',8) As 'Em execuÁ„o - Fase de Grupos - Atualizando a Tabela de ClassificaÁ„o'
+Select Replicate('>>>',8) As 'Em execu√ß√£o - Fase de Grupos - Atualizando a Tabela de Classifica√ß√£o'
 Go
 
--- Atualizando as ClassificaÁıes
+-- Atualizando as Classifica√ß√µes
 Exec P_ClassificacaoGrupoA
 Go
 
@@ -324,13 +324,13 @@ Go
 Exec P_ClassificacaoGrupoH
 Go
 
-Select Replicate('>>>',9) As 'Em execuÁ„o - Definindo as SeleÁıes - Fase - Oitavas de Final'
+Select Replicate('>>>',9) As 'Em execu√ß√£o - Definindo as Sele√ß√µes - Fase - Oitavas de Final'
 Go
 
-Select Replicate('>>>',9) As 'Em execuÁ„o - SeleÁıes Classificadas - Fase - Oitavas de Final'
+Select Replicate('>>>',9) As 'Em execu√ß√£o - Sele√ß√µes Classificadas - Fase - Oitavas de Final'
 Go
 
--- Inserindo as SeleÁıes Classificados de cada Grupo na Tabela ClassificadosOitavasDeFinal --
+-- Inserindo as Sele√ß√µes Classificados de cada Grupo na Tabela ClassificadosOitavasDeFinal --
 Insert Into ClassificadosOitavasDeFinal (CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalNoGrupo)
 Select CodigoGrupoSorteio, CodigoSelecaoSorteio, ClassificacaoFinalGrupo From GrupoA
 Where ClassificacaoFinalGrupo In (1,2)
@@ -358,8 +358,8 @@ Where ClassificacaoFinalGrupo In (1,2)
 Order By CodigoGrupoSorteio, ClassificacaoFinalGrupo
 Go
 
--- Consultando as SeleÁıes Classificadas para as Oitavas de Finais --
-Select 'Classificada(o)' As 'Oitavas de Final', G.SiglaGrupo As Grupo, S.NomeSelecao As 'SeleÁıes', Concat(C.ClassificacaoFinalNoGrupo,'∫') As 'ClassificaÁ„o'
+-- Consultando as Sele√ß√µes Classificadas para as Oitavas de Finais --
+Select 'Classificada(o)' As 'Oitavas de Final', G.SiglaGrupo As Grupo, S.NomeSelecao As 'Sele√ß√µes', Concat(C.ClassificacaoFinalNoGrupo,'¬∫') As 'Classifica√ß√£o'
 From ClassificadosOitavasDeFinal C Inner Join Grupos G
 															On C.CodigoGrupoSorteio = G.CodigoGrupo
                                                             Inner Join Selecoes S
@@ -367,7 +367,7 @@ From ClassificadosOitavasDeFinal C Inner Join Grupos G
 
 Go
 
-Select Replicate('>>>',10) As 'Em execuÁ„o - Fase - Oitavas de Final - Simulando os Jogos'
+Select Replicate('>>>',10) As 'Em execu√ß√£o - Fase - Oitavas de Final - Simulando os Jogos'
 Go
 
 -- Criando os 8 Jogos da Fase de Oitavas de Final --
@@ -414,16 +414,16 @@ While (Select Count(CodigoJogo) From Jogos) <= 56
 End
 Go
 
-Select Replicate('>>>',11) As 'Em execuÁ„o - Fase - Oitavas de Final - An·lise de Empates'
+Select Replicate('>>>',11) As 'Em execu√ß√£o - Fase - Oitavas de Final - An√°lise de Empates'
 Go
 
--- Eliminando a ocorrÍncia de possÌveis empates nos Jogos de Oitavas de Final --
+-- Eliminando a ocorr√™ncia de poss√≠veis empates nos Jogos de Oitavas de Final --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2) >=1
 Begin
 
  Select 'Ocorreu empate(s) no(s) seguinte(s) jogos' As 'Oitavas de Final',' ' As 'Placar'
  Union All
- Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Oitavas de Final',
+ Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Oitavas de Final',
             Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar
  From Jogos J Inner Join Grupos G
                        On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -433,14 +433,14 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2)
 
- -- Declarando a Vari·vel do Tipo Tabela @JogosComEmpates para armazenar o cÛdigo dos jogos empatados --
+ -- Declarando a Vari√°vel do Tipo Tabela @JogosComEmpates para armazenar o c√≥digo dos jogos empatados --
  Declare @JogosComEmpates Table
  (CodigoJogo TinyInt Primary Key)
 
   Insert Into @JogosComEmpates (CodigoJogo)
   Select CodigoJogo From Jogos Where CodigoJogo Between 49 And 56 And GolsSelecao1 = GolsSelecao2
 
-  Select 'ProrrogaÁ„o ou Penaltys ser„o realizados.' As 'Oitavas de Final'
+  Select 'Prorroga√ß√£o ou Penaltys ser√£o realizados.' As 'Oitavas de Final'
  
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
@@ -450,16 +450,16 @@ Begin
     Set @GolsSelecao1 = Rand()*Rand()*8
     Set @GolsSelecao2 = Rand()*Rand()*8
 
-    -- Fator de an·lise para definiÁ„o de ProrrogaÁ„o ou Penaltys --
+    -- Fator de an√°lise para defini√ß√£o de Prorroga√ß√£o ou Penaltys --
     If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
      Begin
-      Select 'A prorrogaÁ„o est· sendo realizada.' As 'Oitavas de Final - ProrrogaÁ„o'
+      Select 'A prorroga√ß√£o est√° sendo realizada.' As 'Oitavas de Final - Prorroga√ß√£o'
      
       Set @StatusProrrogacaoOuPenaltys = 'PR'
      End
      Else
      Begin
-        Select 'Os penaltys est„o sendo realizados.' As 'Oitavas de Final - Penaltys'
+        Select 'Os penaltys est√£o sendo realizados.' As 'Oitavas de Final - Penaltys'
 
        Set @StatusProrrogacaoOuPenaltys = 'PE'
       End
@@ -480,15 +480,15 @@ Begin
  End
 Go
 
-Select Replicate('>>>',12) As 'Em execuÁ„o - Fase - Oitavas de Final - Resultados'
+Select Replicate('>>>',12) As 'Em execu√ß√£o - Fase - Oitavas de Final - Resultados'
 Go
 
 -- Consultando os Jogos da Fase Oitavas de Final - Resultados e Vencedores --
-Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Oitavas de Final',
+Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Oitavas de Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End)
-		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End)
+		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End)
            End As 'Vencedor'
 From Jogos J Inner Join Grupos G
                       On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -500,13 +500,13 @@ Where J.CodigoJogo Between 49 And 56
 Order By J.CodigoJogo
 Go
 
-Select Replicate('>>>',13) As 'Em execuÁ„o - Fase - Quartas de Final - Definindo as SeleÁıes Classificadas'
+Select Replicate('>>>',13) As 'Em execu√ß√£o - Fase - Quartas de Final - Definindo as Sele√ß√µes Classificadas'
 Go
 
-Select Replicate('>>>',13) As 'Em execuÁ„o - Fase - Quartas de Final - SeleÁıes Classificadas'
+Select Replicate('>>>',13) As 'Em execu√ß√£o - Fase - Quartas de Final - Sele√ß√µes Classificadas'
 Go
 
--- Inserindo as SeleÁıes Classificadas para as Quartas de Final --
+-- Inserindo as Sele√ß√µes Classificadas para as Quartas de Final --
 Insert Into ClassificadosQuartasDeFinal
 Select G.CodigoGrupo, 
            Case 
@@ -524,12 +524,12 @@ Order By J.CodigoJogo
 Go
 
 -- Consultando --
-Select 'Classificada(o)' As 'Quartas de Final', S.NomeSelecao As 'SeleÁıes' 
+Select 'Classificada(o)' As 'Quartas de Final', S.NomeSelecao As 'Sele√ß√µes' 
 From ClassificadosQuartasDeFinal Q Inner Join Selecoes S
 															 On Q.CodigoSelecaoSorteio = S.CodigoSelecao
 Go
 
-Select Replicate('>>>',14) As 'Em execuÁ„o - Fase - Quartas de Final - Simulando os Jogos'
+Select Replicate('>>>',14) As 'Em execu√ß√£o - Fase - Quartas de Final - Simulando os Jogos'
 Go
 
 -- Criando os 4 Jogos da Fase de Quartas de Final --
@@ -556,16 +556,16 @@ While @CodigoQuartasDeFinal1 <=7
 End
 Go
 
-Select Replicate('>>>',15) As 'Em execuÁ„o - Fase - Quartas de Final - An·lise de Empates'
+Select Replicate('>>>',15) As 'Em execu√ß√£o - Fase - Quartas de Final - An√°lise de Empates'
 Go
 
--- Eliminando a ocorrÍncia de possÌveis empates nos Jogos de Quartas de Final --
+-- Eliminando a ocorr√™ncia de poss√≠veis empates nos Jogos de Quartas de Final --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo Between 57 And 60 And GolsSelecao1 = GolsSelecao2) >=1
 Begin
 
  Select 'Ocorreu empate(s) no(s) seguinte(s) jogos' As 'Quartas de Final',' ' As 'Placar'
  Union All
- Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Quartas de Final',
+ Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Quartas de Final',
             Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar
  From Jogos J Inner Join Grupos G
                        On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -575,14 +575,14 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 57 And 60 And GolsSelecao1 = GolsSelecao2)
 
- -- Declarando a Vari·vel do Tipo Tabela @JogosComEmpates para armazenar o cÛdigo dos jogos empatados --
+ -- Declarando a Vari√°vel do Tipo Tabela @JogosComEmpates para armazenar o c√≥digo dos jogos empatados --
  Declare @JogosComEmpates Table
  (CodigoJogo TinyInt Primary Key)
 
  Insert Into @JogosComEmpates (CodigoJogo)
  Select CodigoJogo From Jogos Where CodigoJogo Between 57 And 60 And GolsSelecao1 = GolsSelecao2
 
- Select 'ProrrogaÁ„o ou Penaltys ser„o realizados.' As 'Quartas de Final'
+ Select 'Prorroga√ß√£o ou Penaltys ser√£o realizados.' As 'Quartas de Final'
 
  Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
@@ -592,16 +592,16 @@ Begin
    Set @GolsSelecao1 = Rand()*Rand()*8
    Set @GolsSelecao2 = Rand()*Rand()*8
   
-  -- Fator de an·lise para definiÁ„o de ProrrogaÁ„o ou Penaltys --
+  -- Fator de an√°lise para defini√ß√£o de Prorroga√ß√£o ou Penaltys --
    If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
     Begin
-     Select 'A prorrogaÁ„o est· sendo realizada.' As 'Quartas de Final - ProrrogaÁ„o'
+     Select 'A prorroga√ß√£o est√° sendo realizada.' As 'Quartas de Final - Prorroga√ß√£o'
     
     Set @StatusProrrogacaoOuPenaltys = 'PR'
    End
    Else
     Begin
-     Select 'Os penaltys est„o sendo realizados.' As 'Quartas de Final - Penaltys'
+     Select 'Os penaltys est√£o sendo realizados.' As 'Quartas de Final - Penaltys'
 
      Set @StatusProrrogacaoOuPenaltys = 'PE'
     End
@@ -622,15 +622,15 @@ Begin
    End
 Go
 
-Select Replicate('>>>',16) As 'Em execuÁ„o - Fase - Quartas de Final - Resultados'
+Select Replicate('>>>',16) As 'Em execu√ß√£o - Fase - Quartas de Final - Resultados'
 Go
 
 -- Consultando os Jogos da Fase Quartas de Final - Resultados e Vencedores --
-Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Quartas de Final',
+Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Quartas de Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End)
-		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End)
+		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End)
            End As 'Vencedor'
 From Jogos J Inner Join Grupos G
                       On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -642,10 +642,10 @@ Where J.CodigoJogo Between 57 And 60
 Order By J.CodigoJogo
 Go
 
-Select Replicate('>>>',17) As 'Em execuÁ„o - Fase - Semi Final - Definindo as SeleÁıes Classificadas'
+Select Replicate('>>>',17) As 'Em execu√ß√£o - Fase - Semi Final - Definindo as Sele√ß√µes Classificadas'
 Go
 
- -- Inserindo as SeleÁıes Classificadas para as Semi de Finais --
+ -- Inserindo as Sele√ß√µes Classificadas para as Semi de Finais --
 Insert Into ClassificadosSemiFinais
 Select G.CodigoGrupo, 
            Case 
@@ -663,12 +663,12 @@ Order By J.CodigoJogo
 Go
 
 -- Consultando --
-Select 'Classificada(o)' As 'Semi Final' ,S.NomeSelecao As 'SeleÁıes'
+Select 'Classificada(o)' As 'Semi Final' ,S.NomeSelecao As 'Sele√ß√µes'
 From ClassificadosSemiFinais Q Inner Join Selecoes S
                                                      On Q.CodigoSelecaoSorteio = S.CodigoSelecao
 Go
 
-Select Replicate('>>>',18) As 'Em execuÁ„o - Fase - Semi Final - Simulando os Jogos'
+Select Replicate('>>>',18) As 'Em execu√ß√£o - Fase - Semi Final - Simulando os Jogos'
 Go
 
 -- Criando os 2 Jogos da Fase de Semi Final --
@@ -695,16 +695,16 @@ While @CodigoSemiFinal1 <=3
 End
 Go
 
-Select Replicate('>>>',19) As 'Em execuÁ„o - Fase - Semi Final - An·lise de Empates'
+Select Replicate('>>>',19) As 'Em execu√ß√£o - Fase - Semi Final - An√°lise de Empates'
 Go
 
--- Eliminando a ocorrÍncia de possÌveis empates nos Jogos de Semi Final --
+-- Eliminando a ocorr√™ncia de poss√≠veis empates nos Jogos de Semi Final --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo Between 61 And 62 And GolsSelecao1 = GolsSelecao2) >=1
 Begin
 
  Select 'Ocorreu empate(s) no(s) seguinte(s) jogos' As 'Semi Final',' ' As 'Placar'
  Union All
- Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Semi Final',
+ Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Semi Final',
             Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar
  From Jogos J Inner Join Grupos G
                        On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -714,14 +714,14 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo In (Select CodigoJogo From Jogos Where CodigoJogo Between 61 And 62 And GolsSelecao1 = GolsSelecao2)
 
- -- Declarando a Vari·vel do Tipo Tabela @JogosComEmpates para armazenar o cÛdigo dos jogos empatados --
+ -- Declarando a Vari√°vel do Tipo Tabela @JogosComEmpates para armazenar o c√≥digo dos jogos empatados --
  Declare @JogosComEmpates Table
  (CodigoJogo TinyInt Primary Key)
 
  Insert Into @JogosComEmpates (CodigoJogo)
  Select CodigoJogo From Jogos Where CodigoJogo Between 61 And 62 And GolsSelecao1 = GolsSelecao2
 
- Select 'ProrrogaÁ„o ou Penaltys ser„o realizados.' As 'Semi Final'
+ Select 'Prorroga√ß√£o ou Penaltys ser√£o realizados.' As 'Semi Final'
  
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
@@ -731,16 +731,16 @@ Begin
     Set @GolsSelecao1 = Rand()*Rand()*8
     Set @GolsSelecao2 = Rand()*Rand()*8
 
-    -- Fator de an·lise para definiÁ„o de ProrrogaÁ„o ou Penaltys --    
+    -- Fator de an√°lise para defini√ß√£o de Prorroga√ß√£o ou Penaltys --    
     If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
      Begin
-      Select 'A prorrogaÁ„o est· sendo realizada.' As 'Semi Final - ProrrogaÁ„o'
+      Select 'A prorroga√ß√£o est√° sendo realizada.' As 'Semi Final - Prorroga√ß√£o'
      
       Set @StatusProrrogacaoOuPenaltys = 'PR'
      End
      Else
       Begin
-       Select 'Os penaltys est„o sendo realizados.' As 'Semi Final - Penaltys'
+       Select 'Os penaltys est√£o sendo realizados.' As 'Semi Final - Penaltys'
 
        Set @StatusProrrogacaoOuPenaltys = 'PE'
       End
@@ -761,19 +761,19 @@ Begin
    End
  Go
 
-Select Replicate('>>>',20) As 'Em execuÁ„o - Fase - Semi Final - Resultados'
+Select Replicate('>>>',20) As 'Em execu√ß√£o - Fase - Semi Final - Resultados'
 Go
 
 -- Consultando os Jogos da Fase Semi Final - Resultados e Vencedores --
-Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Semi Final',
+Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Semi Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End)
-		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End)
+		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End)
            End As 'Disputa Final',
 		   Case 
-		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  'Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na ProrrogaÁ„o' End)
-		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na ProrrogaÁ„o' End)
+		    When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  'Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na Prorroga√ß√£o' End)
+		    When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then ' Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na Prorroga√ß√£o' End)
            End As 'Disputa Terceiro Lugar'
 From Jogos J Inner Join Grupos G
                       On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -785,10 +785,10 @@ Where J.CodigoJogo Between 61 And 62
 Order By J.CodigoJogo
 Go
 
-Select Replicate('>>>',21) As 'Em execuÁ„o - Fase - Terceiro Lugar e Final - Definindo as SeleÁıes'
+Select Replicate('>>>',21) As 'Em execu√ß√£o - Fase - Terceiro Lugar e Final - Definindo as Sele√ß√µes'
 Go
 
--- Inserindo as SeleÁıes definidas para disputar o Terceiro Lugar --
+-- Inserindo as Sele√ß√µes definidas para disputar o Terceiro Lugar --
 Insert Into ClassificadosTerceiroLugar
 Select G.CodigoGrupo, 
            Case 
@@ -805,7 +805,7 @@ Where J.CodigoJogo Between 61 And 62
 Order By J.CodigoJogo
 Go
  
--- Inserindo as SeleÁıes Classificadas para Final --
+-- Inserindo as Sele√ß√µes Classificadas para Final --
 Insert Into ClassificadosFinal
 Select G.CodigoGrupo, 
            Case 
@@ -822,29 +822,29 @@ Where J.CodigoJogo Between 61 And 62
 Order By J.CodigoJogo
 Go
 
-Select Replicate('>>>',22) As 'Em execuÁ„o - Fase - Terceiro Lugar e Final - Jogos Definidos'
+Select Replicate('>>>',22) As 'Em execu√ß√£o - Fase - Terceiro Lugar e Final - Jogos Definidos'
 Go
 
 -- Consultando --
 Select 'Terceiro e Quarto' As Fase, 
-          (Select S.NomeSelecao As 'SeleÁ„o' 
+          (Select S.NomeSelecao As 'Sele√ß√£o' 
 		   From ClassificadosTerceiroLugar Q Inner Join Selecoes S On Q.CodigoSelecaoSorteio = S.CodigoSelecao
            Where CodigoTerceiroLugar = 1) + ' x '+
-          (Select S.NomeSelecao As 'SeleÁ„o' 
+          (Select S.NomeSelecao As 'Sele√ß√£o' 
 		   From ClassificadosTerceiroLugar Q Inner Join Selecoes S On Q.CodigoSelecaoSorteio = S.CodigoSelecao
-           Where CodigoTerceiroLugar = 2) As 'SeleÁıes'
+           Where CodigoTerceiroLugar = 2) As 'Sele√ß√µes'
 Go
 
 Select 'Final' As Fase, 
-          (Select S.NomeSelecao As 'SeleÁ„o' 
+          (Select S.NomeSelecao As 'Sele√ß√£o' 
 		   From ClassificadosFinal Q Inner Join Selecoes S On Q.CodigoSelecaoSorteio = S.CodigoSelecao
            Where CodigoFinal = 1) + ' x '+
-          (Select S.NomeSelecao As 'SeleÁ„o' 
+          (Select S.NomeSelecao As 'Sele√ß√£o' 
 		   From ClassificadosFinal Q Inner Join Selecoes S On Q.CodigoSelecaoSorteio = S.CodigoSelecao
-           Where CodigoFinal = 2) As 'SeleÁıes'
+           Where CodigoFinal = 2) As 'Sele√ß√µes'
 Go
 
-Select Replicate('>>>',23) As 'Em execuÁ„o - Fase - Terceiro Lugar - Simulando o Jogo'
+Select Replicate('>>>',23) As 'Em execu√ß√£o - Fase - Terceiro Lugar - Simulando o Jogo'
 Go
 
 -- Criando o Jogo da Disputa do Terceiro Lugar --
@@ -857,16 +857,16 @@ Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJog
 Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
 Go
 
-Select Replicate('>>>',24) As 'Em execuÁ„o - Fase - Terceiro Lugar - An·lise de Empate'
+Select Replicate('>>>',24) As 'Em execu√ß√£o - Fase - Terceiro Lugar - An√°lise de Empate'
 Go
 
--- Eliminando a ocorrÍncia de possÌvel empate no Jogo da Disputa do Terceiro Lugar --
+-- Eliminando a ocorr√™ncia de poss√≠vel empate no Jogo da Disputa do Terceiro Lugar --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo = 63 And GolsSelecao1 = GolsSelecao2) = 1
 Begin
 
  Select 'Ocorreu empate no jogo' As 'Terceiro Lugar',' ' As 'Placar'
  Union All
- Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Terceiro Lugar',
+ Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Terceiro Lugar',
             Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar
  From Jogos J Inner Join Grupos G
                        On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -876,7 +876,7 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo = 63
 
- Select 'ProrrogaÁ„o ou Penaltys ser„o realizados.' As 'Terceiro Lugar'
+ Select 'Prorroga√ß√£o ou Penaltys ser√£o realizados.' As 'Terceiro Lugar'
 
  Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
@@ -885,13 +885,13 @@ Begin
 
  If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
   Begin
-   Select 'A prorrogaÁ„o est· sendo realizada.' As 'Terceiro Lugar - ProrrogaÁ„o'
+   Select 'A prorroga√ß√£o est√° sendo realizada.' As 'Terceiro Lugar - Prorroga√ß√£o'
      
    Set @StatusProrrogacaoOuPenaltys = 'PR'
   End
   Else
    Begin
-    Select 'Os penaltys est„o sendo realizados.' As 'Terceiro Lugar - Penaltys'
+    Select 'Os penaltys est√£o sendo realizados.' As 'Terceiro Lugar - Penaltys'
 
     Set @StatusProrrogacaoOuPenaltys = 'PE'
    End
@@ -908,16 +908,16 @@ Begin
   End
 Go
 
-Select Replicate('>>>',25) As 'Em execuÁ„o - Fase - Terceiro Lugar - Resultado'
+Select Replicate('>>>',25) As 'Em execu√ß√£o - Fase - Terceiro Lugar - Resultado'
 Go
 
 -- Consultando o resultado do Jogo - Disputa do Terceiro Lugar --
-Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Terceiro e Quarto',
+Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Terceiro e Quarto',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
-		    Case When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End) 
-             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End) End As 'Terceiro Lugar',
-   		    Case When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na ProrrogaÁ„o' End) 
-             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na ProrrogaÁ„o' End) End As 'Quarto Lugar'
+		    Case When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End) 
+             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Venceu' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End) End As 'Terceiro Lugar',
+   		    Case When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na Prorroga√ß√£o' End) 
+             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then  ' Perdeu' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na Prorroga√ß√£o' End) End As 'Quarto Lugar'
 From Jogos J Inner Join Grupos G
                       On J.CodigoGrupoSorteio = G.CodigoGrupo
                      Inner Join Selecoes S1
@@ -931,7 +931,7 @@ Go
 WaitFor Delay '00:00:05'
 Go
 
-Select Replicate('>>>',26) As 'Em execuÁ„o - Fase - Final - Simulando o Jogo'
+Select Replicate('>>>',26) As 'Em execu√ß√£o - Fase - Final - Simulando o Jogo'
 Go
 
 -- Criando o Jogo da Final --
@@ -944,16 +944,16 @@ Insert Into Jogos (CodigoGrupoSorteio, CodigoSelecao1, CodigoSelecao2, CodigoJog
 Values (1,@CodigoSelecao1,@CodigoSelecao2, 1, Rand()*Rand()*8,Rand()*Rand()*8,Rand()*Rand()*10,Rand()*Rand()*10,Rand()*Rand()*4,Rand()*Rand()*4)
 Go
 
-Select Replicate('>>>',27) As 'Em execuÁ„o - Fase - Final - An·lise de Empate'
+Select Replicate('>>>',27) As 'Em execu√ß√£o - Fase - Final - An√°lise de Empate'
 Go
 
--- Eliminando a ocorrÍncia de possÌvel empate na Final --
+-- Eliminando a ocorr√™ncia de poss√≠vel empate na Final --
 If (Select Count(CodigoJogo) From Jogos Where CodigoJogo = 64 And GolsSelecao1 = GolsSelecao2) =1
 Begin
 
  Select 'Ocorreu empate no jogo' As 'Final',' ' As 'Placar'
  Union All
- Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Final',
+ Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', 'Grupo ',G.SiglaGrupo, ' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Final',
             Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar
  From Jogos J Inner Join Grupos G
                        On J.CodigoGrupoSorteio = G.CodigoGrupo
@@ -963,7 +963,7 @@ Begin
                        On J.CodigoSelecao2 = S2.CodigoSelecao
  Where J.CodigoJogo = 64
 
- Select 'ProrrogaÁ„o ou Penaltys ser„o realizados.' As 'Final'
+ Select 'Prorroga√ß√£o ou Penaltys ser√£o realizados.' As 'Final'
 
   Declare @GolsSelecao1 TinyInt, @GolsSelecao2 TinyInt, @StatusProrrogacaoOuPenaltys Char(2)
 
@@ -972,13 +972,13 @@ Begin
 
    If (Select Round(Convert(Float,Rand()*Rand()),2)) <0.6
     Begin
-     Select 'A prorrogaÁ„o est· sendo realizada.' As 'Final - ProrrogaÁ„o'
+     Select 'A prorroga√ß√£o est√° sendo realizada.' As 'Final - Prorroga√ß√£o'
      
      Set @StatusProrrogacaoOuPenaltys = 'PR'
     End
    Else
     Begin
-     Select 'Os penaltys est„o sendo realizados.' As 'Final - Penaltys'
+     Select 'Os penaltys est√£o sendo realizados.' As 'Final - Penaltys'
 
      Set @StatusProrrogacaoOuPenaltys = 'PE'
     End
@@ -997,16 +997,16 @@ Begin
   End
 Go
 
-Select Replicate('>>>',28) As 'Em execuÁ„o - Fase - Final - Resultado'
+Select Replicate('>>>',28) As 'Em execu√ß√£o - Fase - Final - Resultado'
 Go
 
 -- Consultando o resultado do Jogo - Final --
-Select Concat('Jogo n∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Final',
+Select Concat('Jogo n¬∫ ',J.CodigoJogo,' - ', S1.NomeSelecao,' x ',S2.NomeSelecao) As 'Final',
            Concat(S1.NomeSelecao,' ',J.GolsSelecao1,' x ',J.GolsSelecao2, ' ',S2.NomeSelecao) As Placar,
-		    Case When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End) 
-             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na ProrrogaÁ„o' End) End As 'Fifa World Champions',
-   		    Case When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na ProrrogaÁ„o' End) 
-             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na ProrrogaÁ„o' End) End As 'Runner-up'	   
+		    Case When J.GolsSelecao1 > J.GolsSelecao2 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End) 
+             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Venceu nos Penaltys' Else ' Venceu na Prorroga√ß√£o' End) End As 'Fifa World Champions',
+   		    Case When J.GolsSelecao2 > J.GolsSelecao1 Then Concat(S1.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na Prorroga√ß√£o' End) 
+             Else Concat(S2.NomeSelecao, Case J.ProrrogacaoOuPenaltys When '' Then '' When 'PE' Then ' Perdeu nos Penaltys' Else ' Perdeu na Prorroga√ß√£o' End) End As 'Runner-up'	   
 From Jogos J Inner Join Grupos G
                       On J.CodigoGrupoSorteio = G.CodigoGrupo
                      Inner Join Selecoes S1
@@ -1019,47 +1019,48 @@ Go
 Select Replicate('>>>',29) As 'Atualizando as tabelas internas'
 Go
 
--- Apresentando a ClassificaÁ„o Geral --
+-- Apresentando a Classifica√ß√£o Geral --
 Exec P_ClassificacaoGeral
 Go
 
--- Processando o HistÛrico de SimulaÁıes - Armazenando os HistÛrico de Jogos, ClassificaÁ„o e Atualizando a Contagem de SimulaÁıes realizadas --
+-- Processando o Hist√≥rico de Simula√ß√µes - Armazenando os Hist√≥rico de Jogos, Classifica√ß√£o e Atualizando a Contagem de Simula√ß√µes realizadas --
 Exec P_HistoricoSimulacao 'F'
 Go
 
--- Atualizando o HistÛrico - EstatÌstica de Desempenho - 16 Primeiras PosiÁıes'
+-- Atualizando o Hist√≥rico - Estat√≠stica de Desempenho - 16 Primeiras Posi√ß√µes'
 Exec P_AtualizarHistoricoEstatisticaDesempenho
 Go
 
--- Apresentando o HistÛrico de Finais Disputadas da atual SeleÁ„o Campe„ Mundial, Jogos e Placares --
+-- Apresentando o Hist√≥rico de Finais Disputadas da atual Sele√ß√£o Campe√£ Mundial, Jogos e Placares --
 Declare @NomeSelecaoExtenso Varchar(30)
 
 Set @NomeSelecaoExtenso=(Select Top 1 SelecaoCampea From HistoricoSimulacao Order By CodigoHistoricoSimulacao Desc)
 
 Select Replicate('>>>',30) As 'Resumo de Conquistas'
 
-Select SeleÁ„o, 
-           Concat(Convert(Varchar(4),TotalCampea),' vez(es)') As 'Campe„ Mundial', 
-           Concat(Convert(Varchar(4),TotalViceCampea),' vez(es)') As 'Vice-Campe„ Mundial',
+Select Sele√ß√£o, 
+           Concat(Convert(Varchar(4),TotalCampea),' vez(es)') As 'Campe√£ Mundial', 
+           Concat(Convert(Varchar(4),TotalViceCampea),' vez(es)') As 'Vice-Campe√£ Mundial',
            Convert(Varchar(4),TotalCampea+TotalViceCampea) As 'Total de Final(is) Disputada(s)'
 From dbo.F_HistoricoDeFinais(@NomeSelecaoExtenso) 
 
-Select Replicate('>>>',31) As 'HistÛrico de Finais Disputadas'
+Select Replicate('>>>',31) As 'Hist√≥rico de Finais Disputadas'
 
 Select @NomeSelecaoExtenso As ' ',
-           'N∫ '+Convert(Varchar(4),Row_Number() Over(Order By CodigoHistoricoSimulacao)) As 'Final', 
+           'N¬∫ '+Convert(Varchar(4),Row_Number() Over(Order By CodigoHistoricoSimulacao)) As 'Final', 
            Jogo As 'Jogo(s)', 
 		   Placar As 'Placar(es)',
-		   Format(DataHistoricoSimulacao,'yyyy-mm-dd') As 'Data RealizaÁ„o'
+		   Format(DataHistoricoSimulacao,'yyyy-mm-dd') As 'Data Realiza√ß√£o'
 From HistoricoSimulacao
 Where SelecaoCampea = @NomeSelecaoExtenso
 Or SelecaoVice = @NomeSelecaoExtenso
 
--- Apresentando o HistÛrico - EstatÌstica de Desempenho - 16 Primeiras PosiÁıes --
-Select Replicate('>>>',32) As 'HistÛrico - EstatÌstica de Desempenho - 16 Primeiras PosiÁıes'
+-- Apresentando o Hist√≥rico - Estat√≠stica de Desempenho - 16 Primeiras Posi√ß√µes --
+Select Replicate('>>>',32) As 'Hist√≥rico - Estat√≠stica de Desempenho - 16 Primeiras Posi√ß√µes'
 
 Select * from dbo.F_EstatisticaDesempenho16PrimeirasPosicoes(@NomeSelecaoExtenso)
 Go
 
-Select Replicate('>>>',33) As 'Processamento da SimulaÁ„o concluÌdo com Sucesso!!!'
+Select Replicate('>>>',33) As 'Processamento da Simula√ß√£o conclu√≠do com Sucesso!!!'
+
 Go
